@@ -4,197 +4,124 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aarzoo Srivastava | Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    /* Global Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    /* Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300;400;500&display=swap');
+
+    :root {
+      --beige: #DDD0C8;
+      --dark: #323232;
+      --narvik: #EAE7DD;
+      --sorrell: #99775C;
+      --muted: #6b6b6b;
+      --card-shadow: 0 8px 20px rgba(50,50,50,0.12);
+      --card-shadow-2: 0 14px 35px rgba(50,50,50,0.18);
+      --radius: 14px;
     }
 
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: "Roboto", sans-serif;
-      background: #f3f4f7;
-      color: #333;
+      background: var(--narvik);
+      color: var(--dark);
       line-height: 1.6;
     }
+    h1,h2,h3,h4 { font-family: "Poppins", sans-serif; }
 
-    h1, h2, h3 {
-      font-family: "Poppins", sans-serif;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 30px 20px;
-    }
+    .container { max-width: 1100px; margin: auto; padding: 20px; }
 
     /* Header */
     header {
       text-align: center;
-      padding: 80px 20px 60px;
-      background: linear-gradient(135deg, #2c3e50, #3498db);
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #323232, #99775C);
       color: white;
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow-2);
+      margin-bottom: 30px;
     }
+    header h1 { font-size: 2.5rem; letter-spacing: 2px; }
+    header h2 { font-size: 1.2rem; margin-top: 10px; }
 
-    header h1 {
-      font-size: 3.2rem;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      margin-bottom: 10px;
-    }
-
-    header h2 {
-      font-size: 1.3rem;
-      font-weight: 400;
-      opacity: 0.9;
-    }
-
-    /* Section Layout */
-    section {
-      margin: 50px 0;
-    }
-
-    section h3 {
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-      color: #2c3e50;
-      border-left: 6px solid #3498db;
-      padding-left: 12px;
-    }
-
+    /* Card */
     .card {
       background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.12);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      margin-bottom: 25px;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+      transition: all 0.3s ease;
     }
+    .card:hover { transform: translateY(-6px); box-shadow: var(--card-shadow-2); }
 
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    }
+    /* Sections */
+    section { margin: 40px 0; }
+    section h3 { border-left: 6px solid var(--sorrell); padding-left: 10px; margin-bottom: 15px; }
 
-    .about p {
-      font-size: 1.05rem;
-      color: #555;
-    }
-
-    /* Skills Grid */
+    /* Skills */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
     }
-
     .skill {
-      background: #ecf3fc;
-      padding: 12px;
+      background: #f3f1ef;
+      padding: 10px;
+      text-align: center;
       border-radius: 8px;
-      text-align: center;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: #2c3e50;
-      box-shadow: inset 0 3px 6px rgba(0,0,0,0.08);
+      font-weight: 600;
+      color: var(--sorrell);
+      box-shadow: inset 0 4px 10px rgba(0,0,0,0.05);
     }
 
-    /* Contact */
-    .contact p {
-      font-size: 1rem;
-      margin-bottom: 6px;
+    /* Experience */
+    .exp-item {
+      cursor: pointer;
+      padding: 12px;
+      margin: 8px 0;
+      background: var(--beige);
+      border-radius: 10px;
+      box-shadow: var(--card-shadow);
+    }
+    .exp-item:hover { background: #e0d6cd; }
+    .exp-details { display: none; margin-top: 12px; }
+
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap: 10px;
+    }
+    .gallery img {
+      width: 100%; height: 200px; object-fit: cover;
+      border-radius: 8px; box-shadow: var(--card-shadow);
     }
 
-    .contact a {
-      color: #3498db;
-      text-decoration: none;
-      font-weight: 500;
+    /* Special backgrounds */
+    .freelance { 
+      background: url('assets/freelance-bg.jpg') center/cover no-repeat; 
+      color: white; position: relative; 
+    }
+    .freelance::before {
+      content:""; position:absolute; inset:0; background:rgba(0,0,0,0.6); border-radius:inherit;
+    }
+    .freelance > * { position: relative; }
+
+    .haley { position: relative; background: var(--beige); }
+    .haley::before {
+      content:""; position:absolute; inset:0; background:url('assets/haley-sketch.png') center/cover no-repeat; opacity:0.2;
+    }
+    .haley img {
+      width:150px; position:absolute; bottom:20px; right:20px; border-radius:8px; opacity:0.8; filter:grayscale(100%);
     }
 
-    .contact a:hover {
-      text-decoration: underline;
-    }
+    footer { text-align: center; margin: 40px 0; font-size: 0.9rem; color: var(--muted); }
 
-    footer {
-      text-align: center;
-      margin-top: 60px;
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #777;
-    }
-
-    /* ---------------- Responsive Design ---------------- */
-    @media (max-width: 1024px) {
-      header h1 {
-        font-size: 2.5rem;
-      }
-      header h2 {
-        font-size: 1.1rem;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .container {
-        padding: 20px 15px;
-      }
-
-      header {
-        padding: 60px 15px 40px;
-      }
-
-      header h1 {
-        font-size: 2.2rem;
-        letter-spacing: 2px;
-      }
-
-      section h3 {
-        font-size: 1.5rem;
-      }
-
-      .card {
-        padding: 20px;
-      }
-
-      .skills-grid {
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      }
-    }
-
-    @media (max-width: 480px) {
-      header {
-        padding: 50px 10px 30px;
-      }
-
-      header h1 {
-        font-size: 1.8rem;
-        letter-spacing: 1px;
-      }
-
-      header h2 {
-        font-size: 1rem;
-      }
-
-      section h3 {
-        font-size: 1.3rem;
-        padding-left: 8px;
-      }
-
-      .about p, .contact p {
-        font-size: 0.95rem;
-      }
-
-      .skill {
-        font-size: 0.85rem;
-        padding: 10px;
-      }
-
-      footer {
-        font-size: 0.8rem;
-      }
+    /* Responsive */
+    @media(max-width:600px){
+      header h1 { font-size: 1.8rem; }
+      header h2 { font-size: 1rem; }
+      .gallery img { height: 150px; }
     }
   </style>
 </head>
@@ -203,86 +130,11 @@
     <header>
       <h1>Aarzoo Srivastava</h1>
       <h2>Senior Interior & Digital Designer | Creative Strategist</h2>
+      <p style="margin-top:15px">With over six years of experience in startups and multinational corporations, I bring leadership, adaptability and strategic thinking. My expertise spans interior and digital design with focus on pitches, portfolios and brand identities.</p>
     </header>
 
-    <!-- About -->
-    <section class="about">
-      <h3>Hello</h3>
-      <div class="card">
-        <p>
-          With over six years of experience in both startups and multinational corporations, 
-          I bring a strong combination of leadership, adaptability, and strategic thinking. 
-          My expertise spans interior and digital design, with a focus on developing pitches, 
-          portfolios, and brand identities. I thrive in fast-paced environments, demonstrating 
-          problem-solving skills and the ability to stay ahead of evolving design trends. 
-          My extensive travel has broadened my understanding of global markets, allowing me 
-          to tailor solutions to diverse consumer needs.
-        </p>
-      </div>
-    </section>
-
-    <!-- Education -->
-    <section>
-      <h3>Education</h3>
-      <div class="card">
-        <p><strong>MA/MSc (Design Innovation)</strong> – De Montfort University, UK (2020)</p>
-        <p><strong>B.A. (Interior Architecture & Design)</strong> – Pearl Academy, Noida, India (2013–2017)</p>
-        <p><strong>ISC XII</strong> – Loreto Convent, Lucknow</p>
-      </div>
-    </section>
-
-    <!-- Skills -->
-    <section>
-      <h3>Skills</h3>
-      <div class="card skills-grid">
-        <div class="skill">Figma</div>
-        <div class="skill">Space Planning</div>
-        <div class="skill">Colour Theory</div>
-        <div class="skill">Problem Solving</div>
-        <div class="skill">Customer Service</div>
-        <div class="skill">UX Design</div>
-        <div class="skill">Instructional Design</div>
-        <div class="skill">Design Physiology</div>
-        <div class="skill">Content Writing</div>
-        <div class="skill">AutoCAD</div>
-        <div class="skill">Adobe Photoshop</div>
-        <div class="skill">InDesign</div>
-        <div class="skill">Google SketchUp</div>
-        <div class="skill">MS Office Suite</div>
-      </div>
-    </section>
-
-    <!-- Experience -->
-    <section>
-      <h3>Experience</h3>
-      <div class="card">
-        <p><strong>Design Team Lead & Sales Executive</strong> – Dahliaa Interior Studio (Feb 2022 – Present)</p>
-        <p>Managed a team of 7 designers and 5 PMs, overseeing client pitching, vendor finalisation, and project delivery.</p>
-      </div>
-      <div class="card">
-        <p><strong>Senior Interior Designer & Project Manager</strong> – goSTOPS (Jan 2020 – Dec 2021)</p>
-        <p>Built the South Division for the brand (Goa, Bangalore, etc.), leading a team of 7–10 members.</p>
-      </div>
-      <div class="card">
-        <p><strong>Freelance Content Writer & Social Media Marketing</strong> (2019 – Present)</p>
-        <p>Worked with brands like Tripoto, The Good Show India, Qbik, Isya Aesthetics, The Pink Post.</p>
-      </div>
-      <div class="card">
-        <p><strong>Design Executive</strong> – Haley Sharpe Design, UK (Feb 2019 – Dec 2019)</p>
-        <p>Worked on design development for Canadian War Museum projects.</p>
-      </div>
-      <div class="card">
-        <p><strong>Head Designer & Project Manager</strong> – Colours Interiors (Aug 2017 – Sept 2018)</p>
-        <p>Designed luxury showrooms & furniture for brands like Versace, Ted Baker, Timex, Corum, Raymond Veil.</p>
-      </div>
-      <div class="card">
-        <p><strong>Marketing Head & Content Creator</strong> – Pearl Academy (2014 – 2017)</p>
-        <p>Part of the Digital Ninjas team, handled Pearl Portfolio, AIFW coordination, and media marketing.</p>
-      </div>
-    </section>
-
     <!-- Contact -->
-    <section class="contact">
+    <section>
       <h3>Contact</h3>
       <div class="card">
         <p>Email: <a href="mailto:aarzoosrivastava828@gmail.com">aarzoosrivastava828@gmail.com</a></p>
@@ -291,9 +143,107 @@
       </div>
     </section>
 
+    <!-- Education -->
+    <section>
+      <h3>Education</h3>
+      <div class="card">
+        <p><strong>MA/MSc (Design Innovation)</strong> – De Montfort University, UK (2020)</p>
+        <p><strong>B.A. Interior Architecture & Design</strong> – Pearl Academy, Noida (2013–2017)</p>
+        <p><strong>ISC XII</strong> – Loreto Convent, Lucknow</p>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section>
+      <h3>Skills</h3>
+      <div class="card skills-grid">
+        <div class="skill">Figma</div><div class="skill">AutoCAD</div><div class="skill">SketchUp</div>
+        <div class="skill">Photoshop</div><div class="skill">InDesign</div><div class="skill">Space Planning</div>
+        <div class="skill">Colour Theory</div><div class="skill">Problem Solving</div><div class="skill">Content Writing</div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section>
+      <h3>Experience</h3>
+      <!-- Dahliaa -->
+      <div class="exp-item" onclick="toggleExp('dahliaa')">
+        Design Team Lead & Sales Executive – Dahliaa Interior Studio
+        <div id="dahliaa" class="exp-details card">
+          <p><em>Feb 2022 – Present</em></p>
+          <p>Managed team of designers, handled client pitches, vendor coordination and project execution for luxury residential and commercial projects.</p>
+          <h4>Projects</h4>
+          <div class="gallery">
+            <img src="assets/dahliaa1.jpg" alt="">
+            <img src="assets/dahliaa2.jpg" alt="">
+            <img src="assets/dahliaa3.jpg" alt="">
+          </div>
+        </div>
+      </div>
+
+      <!-- goSTOPS -->
+      <div class="exp-item" onclick="toggleExp('gostops')">
+        Senior Interior Designer – goSTOPS
+        <div id="gostops" class="exp-details card">
+          <p><em>Jan 2020 – Dec 2021</em></p>
+          <p>Built South division hostels (Goa, Bangalore). Focus on space efficiency, modular furniture, durable finishes and vibrant youth-oriented designs.</p>
+          <h4>Projects</h4>
+          <div class="gallery">
+            <img src="assets/gostops1.jpg" alt="">
+            <img src="assets/gostops2.jpg" alt="">
+          </div>
+        </div>
+      </div>
+
+      <!-- Freelance -->
+      <div class="exp-item" onclick="toggleExp('freelance')">
+        Freelance Content Writer & Social Media Marketing
+        <div id="freelance" class="exp-details card freelance">
+          <h4>Jan 2019 – Present</h4>
+          <p>Created content for Tripoto, The Good Show India, Qbik, Isya Aesthetics, The Pink Post. Focused on travel storytelling, lifestyle branding and digital campaigns.</p>
+        </div>
+      </div>
+
+      <!-- Haley -->
+      <div class="exp-item" onclick="toggleExp('haley')">
+        Design Executive – Haley Sharpe Design, UK
+        <div id="haley" class="exp-details card haley">
+          <h4>Feb 2019 – Dec 2019</h4>
+          <p>Worked on Canadian War Museum exhibits with a 12-member team, balancing heritage storytelling with visitor flow, lighting and technical detailing.</p>
+          <img src="assets/haley-model.jpg" alt="model">
+        </div>
+      </div>
+
+      <!-- Colours -->
+      <div class="exp-item" onclick="toggleExp('colours')">
+        Head Designer & Project Manager – Colours Interiors
+        <div id="colours" class="exp-details card">
+          <h4>Aug 2017 – Sept 2018</h4>
+          <p>Designed luxury showrooms for brands like Versace, Ted Baker, Timex. Led bespoke furniture design, material selection and site execution.</p>
+          <div class="gallery">
+            <img src="assets/colours1.jpg" alt="">
+            <img src="assets/colours2.jpg" alt="">
+          </div>
+        </div>
+      </div>
+
+      <!-- Pearl -->
+      <div class="exp-item">
+        Marketing Head & Content Creator – Pearl Academy (2014–2017)
+      </div>
+    </section>
+
     <footer>
-      &copy; 2025 Aarzoo Srivastava | Senior Interior Designer Portfolio
+      © 2025 Aarzoo Srivastava | Senior Interior Designer
     </footer>
   </div>
+
+  <script>
+    function toggleExp(id){
+      let el = document.getElementById(id);
+      if(el.style.display === "block"){ el.style.display = "none"; }
+      else { el.style.display = "block"; }
+    }
+  </script>
 </body>
 </html>
