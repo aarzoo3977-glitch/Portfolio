@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Aarzoo Srivastava — Portfolio</title>
+<style>
+  :root{
+    --charcoal:#1b2124; --charcoal-2:#262b2e; --pearl:#e9ebe9; --soft-blue:#2b5d6a; --muted:#7a8790;
+    --glass:rgba(255,255,255,0.03); --card-grad:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    --shadow:0 18px 50px rgba(8,12,14,0.6); --glow:0 0 60px rgba(43,93,106,0.08);
+    font-family:Inter,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+
+  html,body{
+    height:100%;margin:0;
+    background:
+      radial-gradient(800px 600px at 10% 10%, rgba(43,93,106,0.06), transparent 8%),
+      linear-gradient(180deg,var(--charcoal),var(--charcoal-2));
+    color:var(--pearl);
+    -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  }
+
+  .wrap{max-width:1200px;margin:36px auto;padding:22px;display:flex;gap:22px;min-height:72vh;}
+  nav.sidebar{width:300px;min-width:240px;border-radius:14px;padding:20px;background:var(--card-grad);box-shadow:var(--shadow);backdrop-filter:blur(6px);display:flex;flex-direction:column;gap:18px}
+  .brand{display:flex;gap:14px;align-items:center}
+  .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--soft-blue),#20323a);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;color:var(--pearl);box-shadow:var(--glow)}
+  .name{font-size:18px;margin:0}
+  .nav{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+  .nav button{background:transparent;color:var(--pearl);border:none;text-align:left;padding:10px;border-radius:10px;cursor:pointer;font-size:15px;transition:all .18s ease}
+  .nav button:hover,.nav button.active{transform:translateX(8px);box-shadow:0 10px 30px rgba(0,0,0,0.6)}
+
+  main{flex:1;border-radius:14px;padding:22px;box-shadow:var(--shadow);background:
+    radial-gradient(400px 200px at 80% 10%, rgba(43,93,106,0.03), transparent 10%),
+    linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+    position:relative;overflow:hidden}
+  main::before{content:"";position:absolute;inset:-30% -10% auto -10%;height:60%;background:radial-gradient(closest-side, rgba(43,93,106,0.055), transparent);filter:blur(40px);z-index:0;pointer-events:none}
+  .card{position:relative;z-index:1;background:var(--card-grad);border-radius:12px;padding:18px;box-shadow:var(--glow)}
+
+  /* About */
+  .hero{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}
+  .intro{flex:1}
+  .intro h1{margin:0;font-size:28px}
+  .intro p{color:var(--muted);line-height:1.6;margin-top:10px}
+  .highlight{margin-top:14px;padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02)}
+
+  /* Education */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+  .edu-card{padding:14px;border-radius:12px;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.02)}
+  .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .badge{background:rgba(255,255,255,0.02);padding:8px 10px;border-radius:999px;font-size:13px;color:var(--pearl);border:1px solid rgba(255,255,255,0.02)}
+
+  /* Experience */
+  .exp-list{display:flex;flex-direction:column;gap:12px}
+  .exp-item{padding:12px;border-radius:10px;background:rgba(255,255,255,0.01);cursor:pointer;border:1px solid rgba(255,255,255,0.02)}
+  .exp-item:hover{transform:translateX(6px)}
+  .proj-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px}
+  .proj-card{padding:12px;border-radius:12px;color:var(--pearl);cursor:pointer;transition:transform .18s ease,box-shadow .18s ease;border:1px solid rgba(255,255,255,0.04);box-shadow:0 10px 30px rgba(0,0,0,0.45)}
+  .p1{background:linear-gradient(180deg, rgba(43,93,106,0.12), rgba(255,255,255,0.01));}
+  .p2{background:linear-gradient(180deg, rgba(58,75,87,0.12), rgba(255,255,255,0.01));}
+  .p3{background:linear-gradient(180deg, rgba(33,37,41,0.10), rgba(255,255,255,0.01));}
+  .p4{background:linear-gradient(180deg, rgba(211,217,212,0.14), rgba(255,255,255,0.02));color:var(--charcoal);border:1px solid rgba(30,30,30,0.06)}
+  .proj-card:hover{transform:translateY(-6px);box-shadow:0 28px 80px rgba(0,0,0,0.6)}
+
+  /* gallery */
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:12px}
+  .tile{border-radius:10px;overflow:hidden;position:relative;height:180px;background:#0f1416;transform:perspective(700px) rotateX(2deg);box-shadow:0 16px 40px rgba(0,0,0,0.6)}
+  .tile img{width:100%;height:100%;object-fit:cover;display:block;user-select:none;-webkit-user-drag:none}
+  .caption{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,0.44);padding:6px 8px;border-radius:8px;font-size:12px;color:var(--pearl)}
+
+  /* modal */
+  .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(0,0,0,0.66), rgba(0,0,0,0.8));z-index:9999;padding:20px}
+  .modal.open{display:flex}
+  .modal .frame{background:#0e1314;border-radius:12px;padding:12px;max-width:1100px;width:100%}
+  .modal img{width:100%;height:70vh;object-fit:contain;border-radius:8px}
+
+  /* contact */
+  .contacts{display:flex;flex-direction:column;gap:8px}
+
+  /* animation */
+  .fade-in{opacity:0;transform:translateY(10px);transition:all .6s cubic-bezier(.2,.9,.25,1)}
+  .fade-in.visible{opacity:1;transform:none}
+
+  @media (max-width:920px){
+    .wrap{flex-direction:column;padding:14px}
+    nav.sidebar{width:100%;order:2}
+    main{order:1}
+    .hero{flex-direction:column;align-items:flex-start}
+  }
+  a{color:var(--pearl)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="sidebar">
+  <div class="brand">
+    <div class="logo">AR</div>
+    <div><div class="name">Aarzoo Srivastava</div></div>
+  </div>
+  <div class="nav">
+    <button data-route="about" class="active">About</button>
+    <button data-route="education">Education</button>
+    <button data-route="experience">Experience</button>
+    <button data-route="contact">Contact</button>
+  </div>
+</nav>
+
+<main>
+<section id="about" class="page fade-in visible">
+  <div class="card hero">
+    <div class="intro">
+      <h1>Aarzoo Srivastava</h1>
+      <p>With over six years of experience in both startups and multinational corporations, I bring a strong combination of leadership, adaptability, and strategic thinking to the table. My expertise spans interior and digital design, with a focus on developing pitches, portfolios, and brand identities. I thrive in fast-paced environments, demonstrating problem-solving skills and the ability to stay ahead of evolving design trends.</p>
+      <p>My extensive travel has broadened my understanding of global markets, allowing me to tailor solutions to diverse consumer needs. I am confident that my creativity, technical knowledge, and research skills make me a valuable asset to any team. I look forward to the opportunity to contribute to a dynamic organisation.</p>
+      <div class="highlight">
+        <strong>Highlights / Recognition</strong>
+        <p>Featured in <b>Architect & Interiors India</b> for Vanamo Café, Bengaluru — 
+        <a target="_blank" href="https://www.architectandinteriorsindia.com/projects/get-your-caffeine-boost-and-enjoy-the-comfort-of-nature-at-this-bengaluru-cafe?fbclid=PAZXh0bgNhZW0CMTEAAaZc7kgC5qAe1oMp6s8mIlhGNjVUdYNlYlBT7CNpDuAnZlBy4clwgxXvkHY_aem__-HodVN35Av_S7FZTttSJw">Read Article →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education" class="page" style="display:none">
+  <div class="card fade-in">
+    <h2>Education</h2>
+    <div class="grid">
+      <div class="edu-card"><h3>MA/MSc (Design Innovation)</h3><div class="muted">De Montfort University — 2020</div></div>
+      <div class="edu-card"><h3>BA Interior Architecture & Design</h3><div class="muted">Pearl Academy — 2017</div></div>
+    </div>
+    <div style="margin-top:16px">
+      <div class="muted">Skills & Strengths</div>
+      <div class="badges">
+        <span class="badge">AutoCAD</span><span class="badge">SketchUp</span><span class="badge">Figma</span><span class="badge">3D Visualization</span>
+        <span class="badge">Space Planning</span><span class="badge">Content Creation</span><span class="badge">Problem-Solving</span>
+        <span class="badge">Team Building</span><span class="badge">Leadership</span><span class="badge">Domain Expertise</span>
+        <span class="badge">Tenacious Work Ethic</span><span class="badge">Resilience</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="page" style="display:none">
+  <div class="card fade-in">
+    <h2>Experience</h2>
+    <p class="muted">Click a firm to view projects.</p>
+    <div class="exp-list">
+      <div class="exp-item" data-ex="Freelance_Interior_Designer_Stylist">Freelance Interior Designer & Stylist</div>
+      <div class="exp-item" data-ex="Dahliaa">Studio Head / Design Lead — Dahliaa</div>
+      <div class="exp-item" data-ex="goSTOPS">Senior Interior Designer — goSTOPS</div>
+      <div class="exp-item" data-ex="Freelance_Content_Writer">Freelance Content Writer & Social Media Strategist</div>
+      <div class="exp-item" data-ex="Haley_Sharpe">Design Executive — Haley Sharpe Design, UK</div>
+      <div class="exp-item" data-ex="Colours_Interiors">Head Designer & Project Manager — Colours Interiors</div>
+      <div class="exp-item" data-ex="Pearl_Academy">Marketing Head — Pearl Academy</div>
+    </div>
+    <div id="firm-detail" style="margin-top:18px"></div>
+  </div>
+</section>
+
+<section id="detail" class="page" style="display:none"></section>
+
+<section id="contact" class="page" style="display:none">
+  <div class="card fade-in">
+    <h2>Contact</h2>
+    <div class="contacts">
+      <div><strong>Email</strong><div class="muted">aarzoosrivastava828@gmail.com</div></div>
+      <div><strong>Phone</strong><div class="muted">+91 8375864810 · +44 7490566110</div></div>
+      <div><strong>LinkedIn</strong><div class="muted"><a target="_blank" href="https://www.linkedin.com/in/aarzoo-srivastava">linkedin.com/in/aarzoo-srivastava</a></div></div>
+    </div>
+  </div>
+</section>
+</main>
+</div>
+<script>
+/* Smooth navigation */
+const pages=document.querySelectorAll(".page");
+const navBtns=document.querySelectorAll(".nav button");
+navBtns.forEach(b=>b.onclick=()=>{
+  navBtns.forEach(n=>n.classList.remove("active"));
+  b.classList.add("active");
+  const id=b.dataset.route;
+  pages.forEach(p=>p.style.display=p.id===id?"block":"none");
+  setTimeout(()=>p=document.querySelector("#"+id).classList.add("visible"),30);
+});
+
+/* Data: experiences & projects */
+const data={
+  "Dahliaa":{
+    desc:`As Studio Head and Design Lead at Dahliaa, a dynamic startup founded in 2018, I led all aspects of the business since 2020—from client acquisition and design development to mentoring a team of designers and supervisors. Oversaw residential and commercial projects from concept through handover, strengthening the firm’s client base and reputation for excellence.`,
+    projects:[
+      ["Penthouse_HAL_Bengaluru","Penthouse, HAL, Bengaluru",17],
+      ["Pramukh_Meridian_Bengaluru","Pramukh Meridian, Bengaluru",9],
+      ["Embassy_Boulevard","Embassy Boulevard",8],
+      ["DNR_Atmosphere","DNR Atmosphere",10],
+      ["JP_Nagar_Villa","JP Nagar Villa",3],
+      ["Prestige_Leela","Prestige Leela",5],
+      ["Century_Ethos","Century Ethos",8],
+      ["Indena_Office","Indena Office",7],
+      ["Vanamo_Cafe_Bengaluru","Vanamo Café, Bengaluru",7],
+      ["JustB_Goa","Just B, Goa",7],
+      ["North_Star_Cafe_Bengaluru","North Star Café, Bengaluru",4],
+      ["Prestige_Edwardian_Bengaluru","Prestige Edwardian, Bengaluru",6],
+      ["Aurum_Gym","Aurum Gym",10],
+      ["Philomena_Hospital","Philomena Hospital",6]
+    ]
+  },
+  "goSTOPS":{
+    desc:`As Senior Interior Designer at goSTOPS, I led the creative strategy and design execution for multiple hostels across India — from conceptualisation and material selection to execution oversight. My work ensured that every property embodied the brand’s youthful identity while staying practical and regionally inspired.`,
+    projects:[
+      ["Goa_Baga","Goa – Baga",8],
+      ["Goa_Anjuna","Goa – Anjuna",8],
+      ["Coorg","Coorg",8],
+      ["Ooty","Ooty",8],
+      ["Bengaluru","Bengaluru",8]
+    ]
+  },
+  "Freelance_Interior_Designer_Stylist":{
+    desc:`As a Freelance Interior Designer and Stylist, I have delivered creative, personalised design solutions for clients worldwide — transforming residential and commercial spaces through innovative concepts, attention to detail, and global design sensibilities.`,
+    projects:[
+      ["Villa_Maine","Villa Maine",6],
+      ["Villa_Allure","Villa Allure",6],
+      ["Penthouse_Mumbai","Penthouse – Mumbai",6],
+      ["Villa_Adarsh","Villa Adarsh",6],
+      ["Amari_Hames","Amari Hames",6],
+      ["Nisarg_Home","Nisarg Home",6],
+      ["Amals_Home","Amal’s Home",6],
+      ["Dolce_Homes","Dolce Homes",6]
+    ]
+  },
+  "Colours_Interiors":{
+    desc:`At Colours Interiors, I led luxury retail showroom and bespoke furniture design for global brands such as Versace, Ted Baker, Timex, Corum, and Raymond Weil. Oversaw concept development, prototyping, and execution to ensure every space reflected brand elegance.`,
+    projects:[["Showroom","Retail & Furniture Projects",8]]
+  },
+  "Haley_Sharpe":{
+    desc:`At Haley Sharpe Design (UK), I worked with a team of 12 on museum design projects — focusing on aesthetic detailing, technical coordination, and functional layouts for Canadian-style cultural spaces.`,
+    projects:[["Museum_Project","Canadian Museum Concept",6]]
+  },
+  "Freelance_Content_Writer":{
+    desc:`Alongside design, I worked as a freelance content writer and social-media strategist with brands like Tripoto, The Good Show India, Qbik, Isya Aesthetics, and The Pink Post — developing blogs, campaigns, and visual content blending storytelling with design thinking.`,
+    projects:[["Content_Writing","Lifestyle Blogs & Campaigns",5]]
+  },
+  "Pearl_Academy":{
+    desc:`During my time at Pearl Academy, I served as Marketing Head, managing design-led campaigns, events, and digital initiatives, including Pearl Portfolio and Amazon India Fashion Week.`,
+    projects:[["Marketing","Design & Marketing Events",4]]
+  }
+};
+
+/* Populate firm projects */
+const detail=document.getElementById("firm-detail");
+document.querySelectorAll(".exp-item").forEach(item=>{
+  item.onclick=()=>{
+    const ex=item.dataset.ex,info=data[ex];
+    if(!info)return;
+    detail.innerHTML=`<h3>${item.textContent}</h3><p class="muted">${info.desc}</p><div class='proj-cards'>${info.projects.map((p,i)=>`<div class='proj-card p${(i%4)+1}' data-ex='${ex}' data-proj='${p[0]}' data-count='${p[2]}'>${p[1]}</div>`).join("")}</div>`;
+  };
+});
+
+/* Gallery builder */
+const detailPage=document.getElementById("detail");
+document.addEventListener("click",e=>{
+  const card=e.target.closest(".proj-card");
+  if(!card)return;
+  const ex=card.dataset.ex,proj=card.dataset.proj,count=+card.dataset.count;
+  pages.forEach(p=>p.style.display="none");
+  detailPage.style.display="block";
+  const imgs=[...Array(count)].map((_,i)=>`<div class='tile'><img src='images/${ex.replace(/_/g,' ')}/${proj}/img${i+1}.jpg' alt='${proj}'></div>`).join("");
+  detailPage.innerHTML=`<div class='card fade-in'><button onclick='history.back()' style='background:none;border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:6px 10px;color:var(--pearl);margin-bottom:10px'>← Back</button><h2>${card.textContent}</h2><div class='gallery'>${imgs}</div></div>`;
+});
+
+/* Reveal animation */
+const obs=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add("visible")));
+document.querySelectorAll(".fade-in").forEach(e=>obs.observe(e));
+
+/* Image protection */
+document.addEventListener("contextmenu",e=>e.preventDefault());
+document.addEventListener("dragstart",e=>e.preventDefault());
+</script>
+</body>
+</html>
